@@ -209,6 +209,8 @@
     ];
 
     var contract = web3.eth.contract(abi).at("0xa23fdd26560ea448fa821eaa1e24bbe8d74940b6");
+    var owner = "0x443b215c85241BEC83C05D66F17c35ABD513200c";
+    contract.options.from = owner; // owner 넣어줘야함
 
     var event = contract.sendResult();
     event.watch(function(err, result) {
@@ -236,16 +238,14 @@
     function refreshBalance() {
       var address = document.getElementById('address').value;
 
+
       var balance;
-
       web3.eth.getBalance(address, function(e,r) {
-        balance = r.toNumber();
+        document.getElementById('balance').innerText = web3.fromWei(r.toNumber(), "ether") + "ETHER";
       });
 
-      web3.fromWei(balance, "ether", function(e,r) {
-        document.getElementById('balance').innerText = r + "ETHER";
-      });
-      
+
+
       // document.getElementById('balance').innerText = web3.fromWei(web3.eth.getBalance(address).toNumber(), "ether") + "ETHER";
     }
 
