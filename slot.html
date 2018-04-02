@@ -235,7 +235,18 @@
 
     function refreshBalance() {
       var address = document.getElementById('address').value;
-      document.getElementById('balance').innerText = web3.fromWei(web3.eth.getBalance(address).toNumber(), "ether") + "ETHER";
+
+      var balance;
+
+      web3.eth.getBalance(address, function(e,r) {
+        balance = r.toNumber();
+      });
+
+      web3.fromWei(balance, "ether", function(e,r) {
+        document.getElementById('balance').innerText = r + "ETHER";
+      });
+      
+      // document.getElementById('balance').innerText = web3.fromWei(web3.eth.getBalance(address).toNumber(), "ether") + "ETHER";
     }
 
     function spin() {
