@@ -18,7 +18,7 @@
     console.log('No web3? You should consider trying MetaMask!')
     // fallback - use your fallback strategy (local node / hosted node + in-dapp id mgmt / fail)
     window.web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
-
+  }
 
   var contract = web3.eth.contract([
     {
@@ -153,23 +153,23 @@
     document.getElementById('balance').innerText = web3.fromWei(web3.eth.getBalance(address).toNumber(), "ether") + "ETHER";
   }
 
-  // function spin() {
-  //   var address = document.getElementById('address').value;
-  //   var amount = web3.toWei(document.getElementById('bet_amount').value, "ether");
-  //   web3.eth.defaultAccount = address;
-  //
-  //   if(web3.personal.unlockAccount(address, document.getElementById('pass').value)) {
-  //     contract.bet({value:amount, gas: 2000000}, function(err,result) {
-  //       if(!err) {
-  //         message('결과를 기다리는 중입니다.');
-  //       } else {
-  //         message(err);
-  //       }
-  //     });
-  //   }
-  //
-  //   message('wait...');
-  // }
+  function spin() {
+    var address = document.getElementById('address').value;
+    var amount = web3.toWei(document.getElementById('bet_amount').value, "ether");
+    web3.eth.defaultAccount = address;
+
+    if(web3.personal.unlockAccount(address, document.getElementById('pass').value)) {
+      contract.bet({value:amount, gas: 2000000}, function(err,result) {
+        if(!err) {
+          message('결과를 기다리는 중입니다.');
+        } else {
+          message(err);
+        }
+      });
+    }
+
+    message('wait...');
+  }
 </script>
 <style>
   body {
