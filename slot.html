@@ -242,6 +242,7 @@
       var balance;
       web3.eth.getBalance(address, function(e,r) {
         document.getElementById('balance').innerText = web3.fromWei(r.toNumber(), "ether") + "ETHER";
+        console.log(e);
       });
 
 
