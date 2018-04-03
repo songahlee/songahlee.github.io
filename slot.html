@@ -267,7 +267,7 @@
         } else {
           console.log(e);
         }
-      })
+      });
 
       if(web3.personal.unlockAccount(address, document.getElementById('pass').value)) {
         contract.bet({value:amount, gas: 2000000}, function(err,result) {
