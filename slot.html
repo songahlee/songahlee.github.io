@@ -269,16 +269,6 @@
         });
       });
 
-      if(web3.personal.unlockAccount(address, document.getElementById('pass').value)) {
-        contract.bet({value:amount, gas: 2000000}, function(err,result) {
-          if(!err) {
-            message('결과를 기다리는 중입니다.');
-          } else {
-            message(err);
-          }
-        });
-      }
-
       message('wait...');
     }
   </script>
