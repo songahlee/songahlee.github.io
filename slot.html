@@ -255,6 +255,20 @@
       var amount = web3.toWei(document.getElementById('bet_amount').value, "ether");
       web3.eth.defaultAccount = address;
 
+      web3.personal.unlockAccount(address, document.getElementById('pass').value, function(e,r) {
+        if(r != null) {
+          contract.bet({value:amount, gas: 2000000}, function(err,result) {
+            if(!err) {
+              message('결과를 기다리는 중입니다.');
+            } else {
+              message(err);
+            }
+          });
+        } else {
+          console.log(e);
+        }
+      })
+
       if(web3.personal.unlockAccount(address, document.getElementById('pass').value)) {
         contract.bet({value:amount, gas: 2000000}, function(err,result) {
           if(!err) {
