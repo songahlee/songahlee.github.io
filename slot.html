@@ -244,16 +244,15 @@
         document.getElementById('balance').innerText = web3.fromWei(r.toNumber(), "ether") + "ETHER";
         console.log(e);
       });
-
-
-
-      // document.getElementById('balance').innerText = web3.fromWei(web3.eth.getBalance(address).toNumber(), "ether") + "ETHER";
     }
 
     function spin() {
       var address = document.getElementById('address').value;
       var amount = web3.toWei(document.getElementById('bet_amount').value, "ether");
       web3.eth.defaultAccount = address;
+
+      console.log("address : " + address);
+      console.log("document.getElementById('pass').value : " + document.getElementById('pass').value);
 
       web3.personal.unlockAccount(address, document.getElementById('pass').value, function(e,r) {
         if(e) {
