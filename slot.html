@@ -248,10 +248,7 @@
       console.log("address : " + address);
       console.log("document.getElementById('pass').value : " + document.getElementById('pass').value);
 
-      var owner = "0x443b215c85241BEC83C05D66F17c35ABD513200c";
-      // contract.options.from = owner; // owner 넣어줘야함
-
-      web3.personal.unlockAccount(owner, document.getElementById('pass').value, 1000, function(e,r) {
+      web3.personal.unlockAccount(address, document.getElementById('pass').value, 1000, function(e,r) {
         if(e) {
           console.log(e);
           return;
