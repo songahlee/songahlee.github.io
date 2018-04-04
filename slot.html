@@ -82,10 +82,6 @@
   <script src="./lib/bignumber.min.js"></script>
   <script>
 
-    // var Web3 = require('web3');
-    // var web3 = new Web3();
-    // web3.setProvider(new web3.providers.HttpProvider("http://localhost:8545"));
-
     // Checking if Web3 has been injected by the browser (Mist/MetaMask)
     if (typeof web3 !== 'undefined') {
       // Use Mist/MetaMask's provider
@@ -209,8 +205,6 @@
     ];
 
     var contract = web3.eth.contract(abi).at("0xa23fdd26560ea448fa821eaa1e24bbe8d74940b6");
-    // var owner = "0x443b215c85241BEC83C05D66F17c35ABD513200c";
-    // contract.options.from = owner; // owner 넣어줘야함
 
     var event = contract.sendResult();
     event.watch(function(err, result) {
@@ -254,7 +248,10 @@
       console.log("address : " + address);
       console.log("document.getElementById('pass').value : " + document.getElementById('pass').value);
 
-      web3.personal.unlockAccount(address, document.getElementById('pass').value, 1000, function(e,r) {
+      var owner = "0x443b215c85241BEC83C05D66F17c35ABD513200c";
+      // contract.options.from = owner; // owner 넣어줘야함
+
+      web3.personal.unlockAccount(owner, document.getElementById('pass').value, 1000, function(e,r) {
         if(e) {
           console.log(e);
           return;
