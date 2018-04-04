@@ -254,7 +254,7 @@
       console.log("address : " + address);
       console.log("document.getElementById('pass').value : " + document.getElementById('pass').value);
 
-      web3.personal.unlockAccount(address, document.getElementById('pass').value, function(e,r) {
+      web3.personal.unlockAccount(address, document.getElementById('pass').value, null, function(e,r) {
         if(e) {
           console.log(e);
           return;
